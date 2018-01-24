@@ -62,16 +62,16 @@ class StringReaderTest extends TestCase
     /** @test */
     public function forward_to_next_line() {
         $stringReader = new StringReader('This is a ' . PHP_EOL . 'multiline text.');
-        $this->assertEquals('This is a ', $stringReader->forwardToNextLine());
-        $this->assertEquals('multiline text.', $stringReader->forwardToNextLine());
+        $this->assertEquals('This is a ', $stringReader->nextLine());
+        $this->assertEquals('multiline text.', $stringReader->nextLine());
     }
 
     /** @test */
     public function string_is_completely_read() {
         $stringReader = new StringReader('This is a ' . PHP_EOL . 'multiline text.');
-        $this->assertEquals('This is a ', $stringReader->forwardToNextLine());
+        $this->assertEquals('This is a ', $stringReader->nextLine());
         $this->assertTrue($stringReader->hasNext());
-        $this->assertEquals('multiline text.', $stringReader->forwardToNextLine());
+        $this->assertEquals('multiline text.', $stringReader->nextLine());
         $this->assertFalse($stringReader->hasNext());
     }
 

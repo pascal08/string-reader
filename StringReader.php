@@ -69,7 +69,7 @@ class StringReader
      *
      * @return bool|string
      */
-    public function forwardToNextLine()
+    public function nextLine()
     {
         return $this->forward(PHP_EOL, true);
     }
