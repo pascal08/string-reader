@@ -41,17 +41,21 @@ class StringReader
 
     /**
      * Returns sequence from current pointer to given sequence.
-     * Returns all if sequence not found.
+     * Returns all if sequence not found or no sequence was given.
      *
      * @param string $sequence
      * @param bool   $skip False to stop before sequence, true to forward given sequence
      * @return bool|string
      */
-    public function forward(string $sequence, bool $skip = false)
+    public function forward(string $sequence = null, bool $skip = false)
     {
+        if($sequence === null) {
+            return $this->buffer;
+        }
+
         $forwarded = $this->contains($sequence)
             ? $this->next(strpos($this->buffer, $sequence))
-            : $forwarded = $this->next(strlen($this->buffer));
+            : $this->next(strlen($this->buffer));
 
         if ($skip) {
             $this->skip($sequence);
